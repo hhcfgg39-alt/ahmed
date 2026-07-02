@@ -208,17 +208,23 @@
         (t) => ` ⁝ ${t} ⁝ 𓆩𓆪`,
         (t) => ` ⚚ ${t} ⚚`,
         (t) => `卍 『 ${t} 』 卍`,
-        (t) => `『 𝓥 』 ${t} 👑`
+        (t) => `『 𝓥 』 ${t} 👑`,
+        (t) => `☣️〖 ${t} 〗☣️`,
+        (t) => `⫷ ${t} ⫸`,
+        (t) => `☠️ 𓊈 ${t} 𓊉 ☠️`,
+        (t) => `꧁☠️ ${t} ☠️꧂`
     ];
 
     const rareSymbols = [
         " 亗 (تاج الفخامة)", " 𓆩𓆪 (أجنحة الصقر)", " 🎴 (الشعار النادر)",
         " 👑 (التاج الملكي)", " ⚔️ (السيوف المتقاطعة)", " 🔥 (علامة الغضب)",
-        " 𝓥 (علامة الفريفير للتحقق)", " ☠️ (الجمجمة المرعبة)"
+        " 𝓥 (علامة الفريفير للتحقق)", " ☠️ (الجمجمة المرعبة)",
+        " ⚡ (البرق الخاطف)", " ☣️ (الخطر البيولوجي)", " 𓆩★𓆪 (النجمة الأسطورية)",
+        " ☯️ (اليانغ والين)"
     ];
 
     function showNames() {
-        const val = document.getElementById('userInput').value.trim() || "VexioX";
+        const val = document.getElementById('userInput').value.trim() || "Name";
         const box = document.getElementById('resultsBox');
         box.innerHTML = '';
 
