@@ -18,7 +18,7 @@
         async function start() {
             const img = document.getElementById('img').files[0];
             const res = document.getElementById('res');
-            res.value = "جاري المعالجة.. ثواني وهتخلص";
+            res.value = " ... جاري المعالجة ";
             const { data: { text } } = await Tesseract.recognize(img, 'ara+eng');
             res.value = text;
         }
