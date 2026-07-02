@@ -306,26 +306,25 @@
 
     showNames();
 </script>
+<!-- مولد الـ 50+ زخرفة -->
 <div class="container" style="margin-top: 30px; text-align: center; background: #222; padding: 20px; border-radius: 15px; border: 1px solid var(--gold);">
-    <h2 style="color: var(--gold);">✨ مولد الزخرفة الفوري ✨</h2>
+    <h2 style="color: var(--gold);">✨ مولد 50+ زخرفة احترافية ✨</h2>
     <input type="text" id="nameInput" placeholder="اكتب اسمك هنا..." style="padding: 10px; width: 80%; border-radius: 5px; border: none; margin-bottom: 10px;">
-    <button onclick="generateDecor()" style="padding: 10px 20px; background: var(--gold); border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">زخرف الآن!</button>
-    <div id="result" style="margin-top: 20px; font-size: 24px; color: white; min-height: 50px;"></div>
+    <button onclick="generateBigDecor()" style="padding: 10px 20px; background: var(--gold); border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">زخرف 50 اسم!</button>
+    <div id="result" style="margin-top: 20px; font-size: 18px; color: white; text-align: left; padding: 10px; height: 200px; overflow-y: scroll; border: 1px solid #444;"></div>
 </div>
 
 <script>
-function generateDecor() {
+function generateBigDecor() {
     let name = document.getElementById("nameInput").value;
     if(name === "") return;
-    let decors = [
-        "♛ " + name + " ♛",
-        "★彡[" + name + "]彡★",
-        "⚡ " + name + " ⚡",
-        "『" + name + "』",
-        "꧁ " + name + " ꧂"
-    ];
-    let randomDecor = decors[Math.floor(Math.random() * decors.length)];
-    document.getElementById("result").innerHTML = randomDecor;
+    let symbols = ["♛", "★", "⚡", "『", "꧁", "彡", "〆", "シ", "×", "✧", "❃", "ஜ", "✪", "➤", "✠"];
+    let results = "";
+    for(let i = 0; i < 50; i++) {
+        let s = symbols[Math.floor(Math.random() * symbols.length)];
+        results += (i+1) + "- " + s + name + s + "<br>";
+    }
+    document.getElementById("result").innerHTML = results;
 }
 </script>
 </body>
