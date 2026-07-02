@@ -4,21 +4,38 @@
     <meta charset="UTF-8">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src='https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js'></script>
-    <title>مستخرج النصوص</title>
+    <style>
+        body { background: #020617; color: white; font-family: 'Segoe UI', sans-serif; }
+        .glass { background: rgba(30, 41, 59, 0.5); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
+    </style>
 </head>
-<body class="bg-black text-white flex flex-col items-center justify-center min-h-screen">
-    <h1 class="text-3xl font-bold mb-6 text-blue-500">استخراج النص من الصور</h1>
-    <div class="bg-slate-900 p-8 rounded-3xl w-96 border border-slate-700 shadow-2xl">
-        <input type="file" id="img" class="mb-4 w-full text-sm text-gray-400">
-        <button onclick="start()" class="w-full bg-blue-600 hover:bg-blue-500 py-3 rounded-xl font-bold">بدء الاستخراج</button>
-        <textarea id="res" class="w-full mt-6 h-32 bg-black p-4 rounded-xl text-white" placeholder="النتيجة هتظهر هنا..."></textarea>
+<body class="flex items-center justify-center min-h-screen p-4">
+
+    <div class="glass p-8 rounded-3xl w-full max-w-lg shadow-2xl text-center">
+        <h1 class="text-3xl font-extrabold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
+            OCR Pro AI
+        </h1>
+        <p class="text-slate-400 mb-8 text-sm">استخرج النصوص من صورك بدقة عالية</p>
+
+        <label for="img" class="cursor-pointer block w-full py-4 mb-6 border-2 border-dashed border-slate-600 rounded-2xl hover:border-blue-500 transition-all text-slate-300">
+            <span class="text-lg">📁 اضغط لرفع صورتك</span>
+            <input type="file" id="img" class="hidden" onchange="previewImage()">
+        </label>
+
+        <button onclick="start()" class="w-full py-4 bg-blue-600 hover:bg-blue-700 rounded-2xl font-bold text-lg shadow-lg shadow-blue-900/20 transition-transform active:scale-95">
+            تحليل النص الآن
+        </button>
+
+        <textarea id="res" class="w-full mt-6 h-40 bg-black/40 p-4 rounded-2xl text-white border border-slate-800 focus:ring-2 focus:ring-blue-500 outline-none" placeholder="النص المستخرج سيظهر هنا..."></textarea>
     </div>
 
     <script>
         async function start() {
             const img = document.getElementById('img').files[0];
             const res = document.getElementById('res');
-            res.value = " ... جاري المعالجة ";
+            if(!img) return alert("من فضلك اختر صورة أولاً!");
+            
+            res.value = "جاري معالجة الصورة بواسطة الذكاء الاصطناعي...";
             const { data: { text } } = await Tesseract.recognize(img, 'ara+eng');
             res.value = text;
         }
