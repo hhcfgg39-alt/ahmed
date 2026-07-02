@@ -33,7 +33,13 @@
             إضافة صورة جديدة ➕
         </button>
 
-        <textarea id="res" class="w-full mt-6 h-40 bg-black/50 p-5 rounded-2xl border border-slate-700 outline-none focus:border-blue-500" placeholder="النتيجة تظهر هنا..."></textarea>
+        <!-- مربع النتيجة (readonly) -->
+        <textarea id="res" readonly class="w-full mt-6 h-40 bg-black/50 p-5 rounded-2xl border border-slate-700 outline-none focus:border-blue-500" placeholder="النتيجة تظهر هنا..."></textarea>
+        
+        <!-- زر النسخ -->
+        <button id="copyBtn" onclick="copyText()" class="w-full py-2 mt-2 bg-green-600 hover:bg-green-700 rounded-xl font-bold hidden">
+            نسخ النص 📋
+        </button>
     </div>
 
     <p class="mt-8 text-slate-500 font-semibold">تم إنشاء هذا الموقع بواسطة Ahmed</p>
@@ -50,13 +56,21 @@
             if(input.files.length > 0) label.innerText = "✅ " + input.files[0].name;
         }
 
-        // تعديل: دالة بتصفر كل حاجة عشان المستخدم يرفع صورة جديدة
+        function copyText() {
+            const res = document.getElementById('res');
+            res.select();
+            document.execCommand('copy');
+            alert("تم نسخ النص!");
+        }
+
         function resetApp() {
             document.getElementById('res').value = "";
-            document.getElementById('fileName').innerText = "📁 اضغط لاختيار صورة أخرى";
+            document.getElementById('fileName').innerText = "📁 اضغط لاختيار صورة";
             document.getElementById('img').value = "";
             document.getElementById('clearBtn').classList.add('hidden');
+            document.getElementById('copyBtn').classList.add('hidden');
             document.getElementById('mainBtn').classList.remove('hidden');
+            document.getElementById('mainBtn').innerText = "بدء التحليل"; // إرجاع الزر لطبيعته
         }
 
         async function start() {
@@ -64,6 +78,7 @@
             const res = document.getElementById('res');
             const btn = document.getElementById('mainBtn');
             const clearBtn = document.getElementById('clearBtn');
+            const copyBtn = document.getElementById('copyBtn');
             
             if(input.files.length === 0) return alert("اختر صورة أولاً!");
             
@@ -71,8 +86,9 @@
             const { data: { text } } = await Tesseract.recognize(input.files[0], 'ara+eng');
             
             res.value = text;
-            btn.classList.add('hidden'); // إخفاء زر التحليل بعد ما يخلص
-            clearBtn.classList.remove('hidden'); // إظهار زر "إضافة صورة جديدة"
+            btn.classList.add('hidden'); 
+            clearBtn.classList.remove('hidden');
+            copyBtn.classList.remove('hidden');
         }
     </script>
 </body>
