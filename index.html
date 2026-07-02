@@ -1,96 +1,268 @@
-<div class="tabs">
-        <button class="tab-btn active" onclick="switchTab('all')">كل الزخارف ✨</button>
-        <button class="tab-btn" onclick="switchTab('games')">أسماء ألعاب 🎮</button>
-        <button class="tab-btn" onclick="switchTab('symbols')">رموز جاهزة 🔱</button>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>👑 موقع زخرفة الأسماء الأسطوري 👑</title>
+    <style>
+        :root {
+            --gold: #ffb700;
+            --dark-bg: #0b0b0f;
+            --card-bg: #14141f;
+            --text-color: #ffffff;
+            --neon-glow: 0 0 15px rgba(255, 183, 0, 0.4);
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            margin: 0;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 550px;
+            margin: 20px auto;
+            background: var(--card-bg);
+            padding: 30px 20px;
+            border-radius: 25px;
+            box-shadow: var(--neon-glow);
+            border: 2px solid var(--gold);
+        }
+
+        h1 {
+            color: var(--gold);
+            font-size: 26px;
+            margin-bottom: 5px;
+            text-shadow: 0 0 10px rgba(255,183,0,0.5);
+        }
+
+        .subtitle {
+            color: #8a8a9e;
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+
+        input {
+            width: 85%;
+            padding: 16px;
+            font-size: 18px;
+            text-align: center;
+            background: #1c1c28;
+            border: 2px solid #333;
+            color: #fff;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: var(--gold);
+            box-shadow: var(--neon-glow);
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 25px;
+            background: #1c1c28;
+            padding: 6px;
+            border-radius: 12px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            background: none;
+            border: none;
+            color: #8a8a9e;
+            padding: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            border-radius: 10px;
+            transition: 0.2s;
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background: var(--gold);
+            color: #000;
+            box-shadow: var(--neon-glow);
+        }
+
+        .results-container {
+            max-height: 450px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        /* كروت الزخرفة الاحترافية */
+        .decoration-card {
+            background: #1c1c28;
+            padding: 18px;
+            margin-bottom: 12px;
+            border-radius: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #2d2d3f;
+            transition: 0.3s;
+        }
+
+        .decoration-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        .name-text {
+            font-size: 19px;
+            font-weight: 500;
+            color: #fff;
+            letter-spacing: 0.5px;
+        }
+
+        .copy-action {
+            background: linear-gradient(135deg, #ffb700, #ff8800);
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .copy-action:hover {
+            transform: scale(1.05);
+        }
+
+        /* شاشة انتظار الإعلان */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(5, 5, 7, 0.97);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .popup-box {
+            background: #14141f;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            border: 2px solid var(--gold);
+            max-width: 300px;
+            box-shadow: var(--neon-glow);
+        }
+
+        .popup-box h3 { color: var(--gold); margin-top: 0; }
+        .counter-num { font-size: 40px; font-weight: bold; color: #ff3333; margin: 15px 0; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>👑 زخرفة الأسماء الاحترافية</h1>
+    <p class="subtitle">اصنع اسمك الأسطوري للألعاب والملفات الشخصية بضغطة واحدة</p>
+    
+    <input type="text" id="userInput" placeholder="اكتب الاسم هنا للزخرفة..." oninput="showNames()">
+
+    <div class="tabs">
+        <button class="tab-btn active" onclick="changeCategory('vip')">زخارف VIP 🔥</button>
+        <button class="tab-btn" onclick="changeCategory('symbols')">رموز نادرة 🔱</button>
     </div>
 
-    <div class="results-list" id="resultsList">
-        </div>
+    <div class="results-container" id="resultsBox"></div>
 </div>
 
-<div class="ad-screen" id="adScreen">
-    <div class="ad-content">
-        <h3>جاري فتح زخارف الـ VIP النادرة... 🎥</h3>
-        <p>انتظر حتى ينتهي العداد لنسخ الزخرفة الحصرية.</p>
-        <div class="timer" id="adTimer">3</div>
+<div class="popup-overlay" id="adPopup">
+    <div class="popup-box">
+        <h3>جاري تجهيز الزخرفة النادرة... 🎥</h3>
+        <p style="color: #aaa; font-size: 13px;">انتظر انتهاء العداد لنسخ الاسم تلقائياً</p>
+        <div class="counter-num" id="countdown">3</div>
     </div>
 </div>
 
 <script>
-    let currentTab = 'all';
-    let pendingCopyText = '';
+    let activeTab = 'vip';
+    let textToCopy = '';
 
-    const gameDecorations = [
-        (n) => 亗 ${n} 亗, (n) => 👑 ꧁ ${n} ꧂ 👑, (n) => ⚔️ 𝔖𝔑ℑ𝔓𝔈ℜ | ${n} ⚔️,
-        (n) => メ ${n} メ, (n) => 🔥 𝓥𝓔𝓧𝓘𝓞𝓧 | ${n} 🔥, (n) => ツ ${n} 𓆩𓆪,
-        (n) => 💎 𝕸𝕬𝕾𝕿𝕭𝕽 | ${n} 💎, (n) => ⚡ ${n} ⚡
+    // زخارف احترافية جاهزة للألعاب
+    const vipStyles = [
+        (t) => `亗 『 ${t} 』 亗`,
+        (t) => ` 👑 ꧁ ${t} ꧂ 👑`,
+        (t) => `𓆩 ${t} 𓆪`,
+        (t) => ` メ ${t} メ`,
+        (t) => ` ⚡ ${t} ⚡`,
+        (t) => ` ╰vｲo╮ ${t} 𓆩𓆪`,
+        (t) => ` ⚔️ 𝔖𝔑ℑ𝔓𝔈ℜ | ${t} ⚔️`,
+        (t) => ` 🔥 𝓥𝓔𝓧𝓘𝓞𝓧 | ${t} 🔥`
     ];
 
-    const generalDecorations = [
-        (n) =>  🎀 ${n} 🎀 , (n) =>  💖  ${n}  💖 , (n) =>  ❃ 【 ${n} 】 ❃ ,
-        (n) =>  ─═ঊঈ ${n} ঊঈ═─ , (n) =>  🌟 🆃🅾🅿 | ${n} 🌟 , (n) =>  ꧁ 𓊈 ${n} 𓊉 ꧂ 
+    const rareSymbols = [
+        " 亗 (تاج الفخامة)", " 𓆩𓆪 (أجنحة الصقر)", " 🎴 (الشعار النادر)",
+        " 👑 (التاج الملكي)", " ⚔️ (السيوف المتقاطعة)", " 🔥 (علامة الغضب)"
     ];
 
-    const readySymbols = [
-        "👑 亗 👑 (تاج الفخامة)", "𓆩𓆪 (أجنحة الصقر)", "⚔️ (السيوف النادرة)", 
-        "🔥 (شعلة الغضب)", "☠️ (رمز الجمجمة)", "💖 (قلوب الحب)", "🕺 (رقصة النصر)"
-    ];
+    function showNames() {
+        const val = document.getElementById('userInput').value.trim() || "VexioX";
+        const box = document.getElementById('resultsBox');
+        box.innerHTML = '';
 
-    function generateDecorations() {
-        const name = document.getElementById('nameInput').value.trim() || "VexioX";
-        const list = document.getElementById('resultsList');
-        list.innerHTML = '';
-
-        if (currentTab === 'all' || currentTab === 'games') {
-            gameDecorations.forEach(deco => createItem(deco(name)));
-            generalDecorations.forEach(deco => createItem(deco(name)));
-        }
-        
-        if (currentTab === 'symbols') {
-            readySymbols.forEach(sym => createItem(sym));
+        if (activeTab === 'vip') {
+            vipStyles.forEach(style => addCard(style(val)));
+        } else {
+            rareSymbols.forEach(sym => addCard(sym));
         }
     }
 
-    function createItem(text) {
-        const list = document.getElementById('resultsList');
-        const item = document.createElement('div');
-        item.className = 'result-item';
-        item.innerHTML = 
-            <span>${text}</span>
-            <button class="copy-btn" onclick="triggerCopy('${text}')">نسخ 📋</button>
-        ;
-        list.appendChild(item);
+    function addCard(finalText) {
+        const box = document.getElementById('resultsBox');
+        const card = document.createElement('div');
+        card.className = 'decoration-card';
+        card.innerHTML = `
+            <span class="name-text">${finalText}</span>
+            <button class="copy-action" onclick="startCopyProcess('${finalText}')">نسخ 📋</button>
+        `;
+        box.appendChild(card);
     }
 
-    function switchTab(tab) {
-        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    function changeCategory(cat) {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         event.target.classList.add('active');
-        currentTab = tab;
-        generateDecorations();
+        activeTab = cat;
+        showNames();
     }
 
-    function triggerCopy(text) {
-        pendingCopyText = text;
-        const adScreen = document.getElementById('adScreen');
-        adScreen.style.display = 'flex';
+    function startCopyProcess(text) {
+        textToCopy = text;
+        const overlay = document.getElementById('adPopup');
+        overlay.style.display = 'flex';
         
-        let timeLeft = 3; 
-        const adTimer = document.getElementById('adTimer');
-        adTimer.innerText = timeLeft;
+        let seconds = 3;
+        const timer = document.getElementById('countdown');
+        timer.innerText = seconds;
         
-        let interval = setInterval(() => {
-            timeLeft--;
-            adTimer.innerText = timeLeft;
-            if (timeLeft <= 0) {
-                clearInterval(interval);
-                adScreen.style.display = 'none';
-                navigator.clipboard.writeText(pendingCopyText);
-                alert("تم نسخ الزخرفة بنجاح! اذهب والصقها في لعبتك الحين 👑");
+        let run = setInterval(() => {
+            seconds--;
+            timer.innerText = seconds;
+            if (seconds <= 0) {
+                clearInterval(run);
+                overlay.style.display = 'none';
+                navigator.clipboard.writeText(textToCopy);
+                alert("تم نسخ الزخرفة الأسطورية بنجاح! 👑");
             }
         }, 1000);
     }
 
-    generateDecorations();
+    showNames();
 </script>
 
 </body>
