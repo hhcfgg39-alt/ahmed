@@ -1,0 +1,97 @@
+<div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('all')">كل الزخارف ✨</button>
+        <button class="tab-btn" onclick="switchTab('games')">أسماء ألعاب 🎮</button>
+        <button class="tab-btn" onclick="switchTab('symbols')">رموز جاهزة 🔱</button>
+    </div>
+
+    <div class="results-list" id="resultsList">
+        </div>
+</div>
+
+<div class="ad-screen" id="adScreen">
+    <div class="ad-content">
+        <h3>جاري فتح زخارف الـ VIP النادرة... 🎥</h3>
+        <p>انتظر حتى ينتهي العداد لنسخ الزخرفة الحصرية.</p>
+        <div class="timer" id="adTimer">3</div>
+    </div>
+</div>
+
+<script>
+    let currentTab = 'all';
+    let pendingCopyText = '';
+
+    const gameDecorations = [
+        (n) => 亗 ${n} 亗, (n) => 👑 ꧁ ${n} ꧂ 👑, (n) => ⚔️ 𝔖𝔑ℑ𝔓𝔈ℜ | ${n} ⚔️,
+        (n) => メ ${n} メ, (n) => 🔥 𝓥𝓔𝓧𝓘𝓞𝓧 | ${n} 🔥, (n) => ツ ${n} 𓆩𓆪,
+        (n) => 💎 𝕸𝕬𝕾𝕿𝕭𝕽 | ${n} 💎, (n) => ⚡ ${n} ⚡
+    ];
+
+    const generalDecorations = [
+        (n) =>  🎀 ${n} 🎀 , (n) =>  💖  ${n}  💖 , (n) =>  ❃ 【 ${n} 】 ❃ ,
+        (n) =>  ─═ঊঈ ${n} ঊঈ═─ , (n) =>  🌟 🆃🅾🅿 | ${n} 🌟 , (n) =>  ꧁ 𓊈 ${n} 𓊉 ꧂ 
+    ];
+
+    const readySymbols = [
+        "👑 亗 👑 (تاج الفخامة)", "𓆩𓆪 (أجنحة الصقر)", "⚔️ (السيوف النادرة)", 
+        "🔥 (شعلة الغضب)", "☠️ (رمز الجمجمة)", "💖 (قلوب الحب)", "🕺 (رقصة النصر)"
+    ];
+
+    function generateDecorations() {
+        const name = document.getElementById('nameInput').value.trim() || "VexioX";
+        const list = document.getElementById('resultsList');
+        list.innerHTML = '';
+
+        if (currentTab === 'all' || currentTab === 'games') {
+            gameDecorations.forEach(deco => createItem(deco(name)));
+            generalDecorations.forEach(deco => createItem(deco(name)));
+        }
+        
+        if (currentTab === 'symbols') {
+            readySymbols.forEach(sym => createItem(sym));
+        }
+    }
+
+    function createItem(text) {
+        const list = document.getElementById('resultsList');
+        const item = document.createElement('div');
+        item.className = 'result-item';
+        item.innerHTML = 
+            <span>${text}</span>
+            <button class="copy-btn" onclick="triggerCopy('${text}')">نسخ 📋</button>
+        ;
+        list.appendChild(item);
+    }
+
+    function switchTab(tab) {
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+        currentTab = tab;
+        generateDecorations();
+    }
+
+    function triggerCopy(text) {
+        pendingCopyText = text;
+        const adScreen = document.getElementById('adScreen');
+        adScreen.style.display = 'flex';
+        
+        let timeLeft = 3; 
+        const adTimer = document.getElementById('adTimer');
+        adTimer.innerText = timeLeft;
+        
+        let interval = setInterval(() => {
+            timeLeft--;
+            adTimer.innerText = timeLeft;
+            if (timeLeft <= 0) {
+                clearInterval(interval);
+                adScreen.style.display = 'none';
+                navigator.clipboard.writeText(pendingCopyText);
+                alert("تم نسخ الزخرفة بنجاح! اذهب والصقها في لعبتك الحين 👑");
+            }
+        }, 1000);
+    }
+
+    generateDecorations();
+</script>
+
+</body>
+</html>
