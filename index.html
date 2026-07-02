@@ -3,72 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Media Downloader</title>
+    <title>AI Downloader Pro</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap');
+        body { background: radial-gradient(circle, #0f172a, #020617); min-height: 100vh; color: white; font-family: 'Segoe UI', Tahoma, sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center p-6">
+
+    <h1 class="text-5xl font-extrabold mb-10 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 animate-pulse">
+        محمل الفيديو الذكي
+    </h1>
+
+    <div class="glass p-8 rounded-3xl shadow-2xl w-full max-w-xl text-center">
+        <input type="text" id="urlInput" placeholder="ألصق رابط الفيديو هنا..." 
+               class="w-full p-4 mb-4 rounded-xl bg-slate-800 border border-slate-700 text-white placeholder-slate-400 focus:ring-2 focus:ring-blue-500 outline-none transition-all text-center">
         
-        :root {
-            --neon-blue: #00f0ff;
-            --purple: #a855f7;
+        <button onclick="startDownload()" 
+                class="w-full py-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl font-bold text-lg hover:opacity-90 transform transition hover:scale-105 active:scale-95 shadow-lg">
+            ابدأ المعالجة الآن
+        </button>
+
+        <div id="result" class="hidden mt-8 p-4 bg-slate-900 rounded-xl border border-slate-700">
+            <p id="statusText" class="text-blue-400">جاري الاتصال بالسيرفر...</p>
+        </div>
+    </div>
+
+    <p class="mt-12 text-slate-600 text-xs max-w-md text-center leading-relaxed">
+        تنبيه: أنت المسؤول الوحيد عن المحتوى الذي تقوم بتحميله. هذا الموقع لا يخزن أي ملفات ولا يروج لانتهاك حقوق الملكية.
+    </p>
+
+    <script>
+        function startDownload() {
+            const url = document.getElementById('urlInput').value;
+            const resultDiv = document.getElementById('result');
+            const statusText = document.getElementById('statusText');
+
+            if (!url) return alert("الرجاء إدخال رابط!");
+
+            resultDiv.classList.remove('hidden');
+            statusText.innerText = "جاري تحليل الفيديو عبر الذكاء الاصطناعي...";
+            
+            // هنا سيتم الربط مع الـ Backend لاحقاً
+            setTimeout(() => {
+                statusText.innerHTML = <span class="text-green-400">تم التعرف على الفيديو بنجاح!</span><br> 
+                <button class='mt-4 px-6 py-2 bg-green-600 rounded-full text-sm font-bold'>تحميل الملف (MP4)</button>;
+            }, 2000);
         }
-        
-        body {
-            font-family: 'Cairo', sans-serif;
-        }
-        
-        .glass {
-            background: rgba(15, 23, 42, 0.75);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(0, 240, 255, 0.2);
-        }
-        
-        .neon-glow {
-            box-shadow: 0 0 25px rgba(0, 240, 255, 0.5),
-                        0 0 50px rgba(168, 85, 247, 0.3);
-        }
-        
-        .gradient-btn {
-            background: linear-gradient(90deg, #00f0ff, #a855f7);
-            transition: all 0.4s ease;
-        }
-        
-        .gradient-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 30px rgba(0, 240, 255, 0.7);
-        }
-        
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.85; }
-        }
-        
-        .animated-bg {
-            background: linear-gradient(45deg, #0f172a, #1e2937, #0f172a);
-            background-size: 400% 400%;
-            animation: gradientShift 25s ease infinite;
-        }
-        
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        .platform-logo {
-            transition: all 0.3s ease;
-        }
-        
-        .platform-logo:hover {
-            transform: scale(1.15) rotate(8deg);
-        }
-        
-        .result-card {
-            animation: fadeInUp 0.6s ease forwards;
-        }
+    </script>
+</body>
+</html>
