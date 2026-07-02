@@ -100,7 +100,78 @@ function randomName() {
     document.getElementById("res").innerText = randomN;
 }
 </script> 
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>👑 VexioX Elite | زخرفة احترافية</title>
+    <!-- هنا ضع كود أدسنس الخاص بك -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
 
+    <style>
+        :root { --gold: #ffcc00; --glass: rgba(255, 255, 255, 0.05); }
+        body { 
+            background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            color: white; font-family: 'Cairo', sans-serif; margin: 0; padding: 20px; min-height: 100vh;
+        }
+        @keyframes gradient { 0% {background-position: 0% 50%;} 50% {background-position: 100% 50%;} 100% {background-position: 0% 50%;} }
+        .hero { max-width: 800px; margin: 30px auto; background: var(--glass); backdrop-filter: blur(15px); padding: 40px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.1); text-align: center; }
+        h1 { color: var(--gold); font-size: 3rem; text-shadow: 0 0 15px var(--gold); }
+        input { width: 80%; padding: 15px; border-radius: 15px; border: none; background: rgba(0,0,0,0.3); color: var(--gold); font-size: 1.3rem; text-align: center; margin-bottom: 20px; }
+        .btn { padding: 15px 30px; border: none; border-radius: 30px; font-weight: bold; cursor: pointer; transition: 0.3s; margin: 5px; }
+        .btn-main { background: var(--gold); color: black; }
+        .btn-rand { background: #444; color: white; }
+        .btn:hover { transform: scale(1.05); box-shadow: 0 0 20px var(--gold); }
+        #res { margin-top: 20px; font-size: 2.5rem; font-weight: bold; min-height: 60px; color: #fff; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); gap: 10px; margin-top: 20px; }
+        .s-card { background: var(--glass); padding: 15px; border-radius: 10px; cursor: pointer; font-size: 1.5rem; transition: 0.3s; }
+        .s-card:hover { background: var(--gold); color: black; }
+    </style>
+</head>
+<body>
+
+<div class="hero">
+    <h1>VexioX Elite</h1>
+    <input type="text" id="in" placeholder="اكتب اسمك أو اختر عشوائي...">
+    <br>
+    <button class="btn btn-rand" onclick="randomName()">اسم عشوائي 🎲</button>
+    <button class="btn btn-main" onclick="gen()">توليد الزخرفة ✨</button>
+    <div id="res">---</div>
+</div>
+
+<div class="hero">
+    <h2>⚜️ مخزن الرموز</h2>
+    <div class="grid" id="box"></div>
+</div>
+
+<script>
+function gen() {
+    let n = document.getElementById("in").value || "الاسم";
+    let p = ["♛","★","⚡","『","꧁","彡","×","✧","❃","ஜ","✪","➤"];
+    document.getElementById("res").innerText = p[Math.floor(Math.random()*p.length)] + " " + n + " " + p[Math.floor(Math.random()*p.length)];
+}
+
+function randomName() {
+    const names = ["Grim Reaper", "Shadow Strike", "Sniper Legend", "𝓢𝓷𝓲𝓹𝓮𝓻", "Venom X", "Toxic Hunter", "『LØRD』๖ۣۜƤhoenix", "☠️𝙱𝙻𝙰𝙲𝙺 𝙺𝙸𝙽𝙶☠️", "𝓖𝓞𝓓 𝓞𝓕 𝓦𝓐𝓡", "亗قـاهـرهـم亗", "ØالـكـابـوسØ", "٭الـقـاتـل٭", "卍الـمـجـرم卍", "々سـفـاح々", "『E』GHOST", "父الـجـزار父", "〆الـمـرعـب〆", "الملكة ꧂", "彡 أميرة الورد 彡", "ズ الأمـ♥ـيرة ズ", "★ القمـر ★", "♛ سيدة القصر ♛", "气 ريحانة الجنة 气", "✿ زهرة اللوتس ✿", "⦇ سحاب ⦈", "᚛ الـرؤى ᚜", "░ مـلاذ", "꧁ ℛ𝒪𝒮ℰ ꧂", "✧ 𝕼𝖚𝖊𝖊𝖓 ✧", "★ 𝓑𝓪𝓫𝔂 𝓖𝓲𝓻𝓵 ★", "☽ ℳℴℴ𝓃𝓁𝒾ℊ𝒽𝓉 ☽", "✿ 𝒲𝒾𝓃𝓉ℰ𝓇 ✿", "♛ 𝓥𝓲𝓿𝓲𝓪𝓷 ♛", "彡 𝔇𝔦𝔞𝔪𝔬𝓫𝔡 彡", "⦇ 𝓢𝓴𝔂 ⦈", "气 ℱ𝒾𝓇ℯ ℬ𝒾𝓇𝒹 气", "✿ 𝓛𝓲𝓵𝔂 ✿", "✧ 𝓝𝓸𝓿𝓪 ✧", "★ 𝓛𝓾𝓷𝓪 ★", "♛ 𝓩𝓸𝓮 ♛", "彡 𝓜𝓲𝓪 彡", "⫷ 𝓔𝓿𝓪 ⫸", "ズ 𝓛𝓸𝓵𝓪 ズ"];
+    let randomN = names[Math.floor(Math.random() * names.length)];
+    document.getElementById("in").value = randomN;
+    document.getElementById("res").innerText = randomN;
+}
+
+const syms = "♛★⚡『꧁彡〆シ×✧❃ஜ✪➤✠ツ❦Ω۞♚♠♣♥♦☀☁☂☃☄★☆☇☈☉☊☋☌☍☎☏☐☑☒☓☘☙☚☛☜☝☞☟☠☡☢☣☤☥☦☧☨☩☪☫☬☭☮☯☰☱☲☳☴☵☶☷☸☹☺☻☼☽☾☿♀♁♂♃♄♅♆♇♈♉♊♋♌♍♎♏♐♑♒♓♔♕♖♗♘♙♚♛♜♝♞♟";
+const box = document.getElementById("box");
+for(let s of syms) {
+    let d = document.createElement("div");
+    d.className = "s-card";
+    d.innerText = s;
+    d.onclick = () => { navigator.clipboard.writeText(s); alert("تم النسخ: " + s); };
+    box.appendChild(d);
+}
+</script>
+</body>
+</html>
     
 </body>
 </html>
