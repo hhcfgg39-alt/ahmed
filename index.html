@@ -306,25 +306,33 @@
 
     showNames();
 </script>
-<!-- مولد الـ 50+ زخرفة -->
-<div class="container" style="margin-top: 30px; text-align: center; background: #222; padding: 20px; border-radius: 15px; border: 1px solid var(--gold);">
-    <h2 style="color: var(--gold);">✨ مولد 50+ زخرفة احترافية ✨</h2>
-    <input type="text" id="nameInput" placeholder="اكتب اسمك هنا..." style="padding: 10px; width: 80%; border-radius: 5px; border: none; margin-bottom: 10px;">
-    <button onclick="generateBigDecor()" style="padding: 10px 20px; background: var(--gold); border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">زخرف 50 اسم!</button>
-    <div id="result" style="margin-top: 20px; font-size: 18px; color: white; text-align: left; padding: 10px; height: 200px; overflow-y: scroll; border: 1px solid #444;"></div>
+<!-- مولد الزخرفة العشوائي (1 من 100) -->
+<div class="container" style="margin-top: 40px; text-align: center; background: linear-gradient(145deg, #2a2a2a, #1a1a1a); padding: 30px; border-radius: 20px; border: 2px solid var(--gold); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+    <h2 style="color: var(--gold); margin-bottom: 20px;">✨ مولد الـ 100 زخرفة العشوائية ✨</h2>
+    <input type="text" id="nameInput" placeholder="اكتب اسمك هنا..." style="padding: 12px; width: 70%; border-radius: 10px; border: 1px solid var(--gold); background: #333; color: white; font-size: 16px;">
+    <br><br>
+    <button onclick="generateSingleDecor()" style="padding: 12px 30px; background: var(--gold); border: none; border-radius: 10px; cursor: pointer; font-weight: bold; font-size: 18px; color: black; transition: 0.3s;">زخرف اسمي الآن!</button>
+    
+    <div id="result" style="margin-top: 25px; font-size: 30px; color: white; font-weight: bold; min-height: 60px; padding: 15px; border-top: 1px solid #444;">
+        ... النتيجة هنا ...
+    </div>
 </div>
 
 <script>
-function generateBigDecor() {
+function generateSingleDecor() {
     let name = document.getElementById("nameInput").value;
     if(name === "") return;
-    let symbols = ["♛", "★", "⚡", "『", "꧁", "彡", "〆", "シ", "×", "✧", "❃", "ஜ", "✪", "➤", "✠"];
-    let results = "";
-    for(let i = 0; i < 50; i++) {
-        let s = symbols[Math.floor(Math.random() * symbols.length)];
-        results += (i+1) + "- " + s + name + s + "<br>";
-    }
-    document.getElementById("result").innerHTML = results;
+    
+    // قائمة تحتوي على تشكيلات متنوعة جداً
+    let prefixes = ["♛", "★", "⚡", "『", "꧁", "彡", "〆", "シ", "×", "✧", "❃", "ஜ", "✪", "➤", "✠", "웃", "ツ", "❦", "Ω", "۞"];
+    let suffixes = ["♛", "★", "⚡", "』", "꧂", "彡", "〆", "シ", "×", "✧", "❃", "ஜ", "✪", "➤", "✠", "웃", "ツ", "❦", "Ω", "۞"];
+    
+    let p = prefixes[Math.floor(Math.random() * prefixes.length)];
+    let s = suffixes[Math.floor(Math.random() * suffixes.length)];
+    
+    // دمج عشوائي يولد أكثر من 100 احتمال
+    let result = p + " " + name + " " + s;
+    document.getElementById("result").innerText = result;
 }
 </script>
 </body>
