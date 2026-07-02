@@ -1,60 +1,455 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
-    <meta charset="UTF-8">
-    <title>VexioX Elite | أكبر مكتبة زخرفة</title>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
-    <style>
-        body { background: #0f0c29; background: linear-gradient(to right, #24243e, #302b63, #0f0c29); color: white; font-family: 'Segoe UI', Tahoma, sans-serif; text-align: center; padding: 20px; }
-        .container { max-width: 800px; margin: auto; background: rgba(255, 255, 255, 0.1); padding: 30px; border-radius: 20px; backdrop-filter: blur(10px); }
-        h1 { color: #ffcc00; }
-        input { width: 70%; padding: 15px; border-radius: 10px; border: none; font-size: 1.2rem; }
-        button { padding: 15px 25px; margin: 10px; border-radius: 10px; border: none; background: #ffcc00; cursor: pointer; font-weight: bold; }
-        #res { font-size: 2rem; color: #fff; margin: 20px; padding: 20px; border: 2px dashed #ffcc00; border-radius: 10px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 10px; margin-top: 20px; }
-        .char { background: #333; padding: 15px; border-radius: 5px; cursor: pointer; transition: 0.3s; }
-        .char:hover { background: #ffcc00; color: black; }
-    </style>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8544712694031374"
-     crossorigin="anonymous"></script>
-</head>
-<body>
 
-<div class="container">
-    <h1>VexioX Elite للزخرفة</h1>
-    <input type="text" id="in" placeholder="اكتب اسمك الفخم هنا...">
-    <br>
-    <button onclick="randomName()">اسم عشوائي 🎲</button>
-    <button onclick="gen()">زخرفة الاسم ✨</button>
-    <div id="res">---</div>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <h2>زخارف جاهزة (اضغط للنسخ)</h2>
-    <div class="grid" id="box"></div>
+<title>زخرفة الأسماء | أفضل موقع زخرفة عربي وإنجليزي</title>
+
+<meta name="description" content="زخرفة أسماء احترافية بالعربي والإنجليزي مع أكثر من 1000 شكل وزخرفة ورموز وإيموجي.">
+
+<meta name="keywords" content="زخرفة, زخرفة أسماء, زخرفة ببجي, زخرفة فري فاير, زخرفة انجليزي, زخرفة عربي">
+
+<meta name="author" content="Mohsen">
+
+<meta name="theme-color" content="#0d1117">
+
+<meta property="og:title" content="أفضل موقع زخرفة أسماء">
+
+<meta property="og:description" content="احصل على أفضل زخرفة مجانية بضغطة واحدة">
+
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Cairo',sans-serif;
+}
+
+body{
+
+background:#090b10;
+
+color:white;
+
+overflow-x:hidden;
+
+transition:.4s;
+
+}
+
+body.light{
+
+background:#f5f5f5;
+
+color:#111;
+
+}
+
+header{
+
+width:100%;
+
+padding:20px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+background:#111827;
+
+position:sticky;
+
+top:0;
+
+z-index:999;
+
+box-shadow:0 0 20px rgba(0,0,0,.5);
+
+}
+
+.logo{
+
+font-size:30px;
+
+font-weight:900;
+
+background:linear-gradient(45deg,#ffcc00,#ff5e00);
+
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
+
+}
+
+.menu{
+
+display:flex;
+
+gap:15px;
+
+}
+
+.menu button{
+
+padding:12px 20px;
+
+border:none;
+
+border-radius:12px;
+
+background:#1f2937;
+
+color:white;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.menu button:hover{
+
+background:#ff9800;
+
+transform:translateY(-3px);
+
+}
+
+.hero{
+
+padding:80px 20px;
+
+text-align:center;
+
+}
+
+.hero h1{
+
+font-size:50px;
+
+margin-bottom:20px;
+
+}
+
+.hero p{
+
+opacity:.8;
+
+margin-bottom:30px;
+
+}
+
+.search-box{
+
+max-width:700px;
+
+margin:auto;
+
+display:flex;
+
+gap:10px;
+
+}
+
+.search-box input{
+
+flex:1;
+
+padding:18px;
+
+border:none;
+
+border-radius:15px;
+
+font-size:20px;
+
+outline:none;
+
+background:#161b22;
+
+color:white;
+
+}
+
+.search-box button{
+
+padding:18px 35px;
+
+border:none;
+
+border-radius:15px;
+
+background:#ff9800;
+
+color:white;
+
+font-size:18px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.search-box button:hover{
+
+transform:scale(1.05);
+
+}
+
+.cards{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+gap:20px;
+
+padding:40px;
+
+}
+
+.card{
+
+background:#161b22;
+
+padding:25px;
+
+border-radius:18px;
+
+transition:.4s;
+
+cursor:pointer;
+
+border:1px solid #333;
+
+}
+
+.card:hover{
+
+transform:translateY(-10px);
+
+border-color:#ff9800;
+
+box-shadow:0 0 25px rgba(255,152,0,.3);
+
+}
+
+.result{
+
+padding:40px;
+
+}
+
+.result h2{
+
+margin-bottom:20px;
+
+}
+
+.result-list{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+
+gap:20px;
+
+}
+
+.item{
+
+background:#161b22;
+
+padding:20px;
+
+border-radius:15px
+    <script>
+
+    <footer>
+
+<p>
+
+جميع الحقوق محفوظة © 2026 | Mohsen Store
+
+</p>
+
+</footer>
+
+<div id="toast">
+
+تم نسخ الزخرفة ✅
+
 </div>
 
+<style>
+
+#toast{
+
+position:fixed;
+
+bottom:25px;
+
+left:50%;
+
+transform:translateX(-50%) translateY(100px);
+
+background:#16a34a;
+
+padding:15px 25px;
+
+border-radius:12px;
+
+font-weight:bold;
+
+transition:.4s;
+
+z-index:9999;
+
+}
+
+#toast.show{
+
+transform:translateX(-50%) translateY(0);
+
+}
+
+</style>
+
 <script>
-function gen() {
-    let n = document.getElementById("in").value || "الاسم";
-    let p = ["♛","★","⚡","『","꧁","彡","×","✧","❃","ஜ","✪"];
-    document.getElementById("res").innerText = p[Math.floor(Math.random()*p.length)] + " " + n + " " + p[Math.floor(Math.random()*p.length)];
+
+const decorations=[
+
+name=>`★ ${name} ★`,
+name=>`✦ ${name} ✦`,
+name=>`✧ ${name} ✧`,
+name=>`『${name}』`,
+name=>`【${name}】`,
+name=>`《${name}》`,
+name=>`❖${name}❖`,
+name=>`◥${name}◤`,
+name=>`◣${name}◢`,
+name=>`♛${name}♛`,
+name=>`♚${name}♚`,
+name=>`꧁${name}꧂`,
+name=>`꧁༒${name}༒꧂`,
+name=>`๖${name}๖`,
+name=>`☬${name}☬`,
+name=>`⚡${name}⚡`,
+name=>`🔥${name}🔥`,
+name=>`💀${name}💀`,
+name=>`👑${name}👑`,
+name=>`☠${name}☠`,
+name=>`⫷${name}⫸`,
+name=>`◈${name}◈`,
+name=>`✿${name}✿`,
+name=>`✪${name}✪`,
+name=>`✯${name}✯`,
+name=>`✰${name}✰`,
+name=>`⎝${name}⎠`,
+name=>`༺${name}༻`,
+name=>`༒${name}༒`,
+name=>`⌁${name}⌁`,
+name=>`◤${name}◥`,
+name=>`◢${name}◣`,
+name=>`♕${name}♕`,
+name=>`☾${name}☽`,
+name=>`✞${name}✞`,
+name=>`☯${name}☯`,
+name=>`✵${name}✵`,
+name=>`✺${name}✺`,
+name=>`❀${name}❀`,
+name=>`❥${name}❥`,
+name=>`✤${name}✤`,
+name=>`➳${name}➳`,
+name=>`➶${name}➶`,
+name=>`✬${name}✬`,
+name=>`⫸${name}⫷`,
+name=>`░${name}░`,
+name=>`▒${name}▒`,
+name=>`▓${name}▓`,
+name=>`◉${name}◉`,
+name=>`◎${name}◎`
+];
+
+function decorate(){
+
+const value=document.getElementById("name").value.trim();
+
+const results=document.getElementById("results");
+
+results.innerHTML="";
+
+if(value===""){
+
+results.innerHTML="<h3>اكتب اسم أولاً</h3>";
+
+return;
+
 }
 
-function randomName() {
-    const names = ["Grim Reaper", "Shadow Strike", "Sniper Legend", "𝓢𝓷𝓲𝓹𝓮𝓻", "Venom X", "Toxic Hunter", "『LØRD』๖ۣۜƤhoenix", "☠️𝙱𝙻𝙰𝙲𝙺 𝙺𝙸𝙽𝙶☠️", "𝓖𝓞𝓓 𝓞𝓕 𝓦𝓐𝓡", "亗قـاهـرهـم亗", "ØالـكـابـوسØ", "٭الـقـاتـل٭", "卍الـمـجـرم卍", "々سـفـاح々", "『E』GHOST", "父الـجـزار父", "〆الـمـرعـب〆", "الملكة ꧂", "彡 أميرة الورد 彡", "ズ الأمـ♥ـيرة ズ", "★ القمـر ★", "♛ سيدة القصر ♛", "气 ريحانة الجنة 气", "✿ زهرة اللوتس ✿", "⦇ سحاب ⦈", "᚛ الـرؤى ᚜", "░ مـلاذ", "꧁ ℛ𝒪𝒮ℰ ꧂", "✧ 𝕼𝖚𝖊𝖊𝖓 ✧", "★ 𝓑𝓪𝓫𝔂 𝓖𝓲𝓻𝓵 ★", "☽ ℳℴℴ𝓃𝓁𝒾ℊ𝒽𝓉 ☽", "✿ 𝒲𝒾𝓃𝓉ℰ𝓇 ✿", "♛ 𝓥𝓲𝓿𝓲𝓪𝓷 ♛", "彡 𝔇𝔦𝔞𝔪𝔬𝓫𝓡 彡", "⦇ 𝓢𝓴𝔂 ⦈", "气 ℱ𝒾𝓇ℯ ℬ𝒾𝓇𝒹 气"];
-    let r = names[Math.floor(Math.random() * names.length)];
-    document.getElementById("in").value = r;
-    document.getElementById("res").innerText = r;
+decorations.forEach(item=>{
+
+const text=item(value);
+
+results.innerHTML+=`
+
+<div class="item">
+
+<span>${text}</span>
+
+<button class="copy"
+
+onclick="copyText('${text}')">
+
+نسخ
+
+</button>
+
+</div>
+
+`;
+
+});
+
 }
 
-const syms = "♛★⚡『꧁彡シ×✧❃ஜ✪➤✠ツ❦Ω۞♚♠♣♥♦☀☁☂☃☄★☆☇☈☉☊☋☌☍";
-const box = document.getElementById("box");
-for(let s of syms) {
-    let d = document.createElement("div");
-    d.className = "char";
-    d.innerText = s;
-    d.onclick = () => { navigator.clipboard.writeText(s); alert("تم النسخ: " + s); };
-    box.appendChild(d);
+function copyText(text){
+
+navigator.clipboard.writeText(text);
+
+const toast=document.getElementById("toast");
+
+toast.classList.add("show");
+
+setTimeout(()=>{
+
+toast.classList.remove("show");
+
+},1800);
+
 }
+
+function toggleMode(){
+
+document.body.classList.toggle("light");
+
+}
+
 </script>
-</body>
 </html>
+​<head>
