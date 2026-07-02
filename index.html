@@ -29,8 +29,8 @@
             بدء التحليل
         </button>
         
-        <button id="clearBtn" onclick="clearText()" class="w-full py-3 mt-3 bg-red-600 hover:bg-red-700 rounded-2xl font-bold hidden text-white">
-            حذف النص 🗑️
+        <button id="clearBtn" onclick="resetApp()" class="w-full py-3 mt-3 bg-red-600 hover:bg-red-700 rounded-2xl font-bold hidden text-white">
+            إضافة صورة جديدة ➕
         </button>
 
         <textarea id="res" class="w-full mt-6 h-40 bg-black/50 p-5 rounded-2xl border border-slate-700 outline-none focus:border-blue-500" placeholder="النتيجة تظهر هنا..."></textarea>
@@ -40,9 +40,8 @@
 
     <script>
         function toggleTheme() {
-            const body = document.body;
-            body.classList.toggle('dark');
-            body.classList.toggle('light');
+            document.body.classList.toggle('dark');
+            document.body.classList.toggle('light');
         }
 
         function updateUI() {
@@ -51,9 +50,13 @@
             if(input.files.length > 0) label.innerText = "✅ " + input.files[0].name;
         }
 
-        function clearText() {
+        // تعديل: دالة بتصفر كل حاجة عشان المستخدم يرفع صورة جديدة
+        function resetApp() {
             document.getElementById('res').value = "";
+            document.getElementById('fileName').innerText = "📁 اضغط لاختيار صورة أخرى";
+            document.getElementById('img').value = "";
             document.getElementById('clearBtn').classList.add('hidden');
+            document.getElementById('mainBtn').classList.remove('hidden');
         }
 
         async function start() {
@@ -68,8 +71,8 @@
             const { data: { text } } = await Tesseract.recognize(input.files[0], 'ara+eng');
             
             res.value = text;
-            btn.innerText = "بدء التحليل";
-            clearBtn.classList.remove('hidden');
+            btn.classList.add('hidden'); // إخفاء زر التحليل بعد ما يخلص
+            clearBtn.classList.remove('hidden'); // إظهار زر "إضافة صورة جديدة"
         }
     </script>
 </body>
