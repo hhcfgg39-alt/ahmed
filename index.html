@@ -33,11 +33,9 @@
             إضافة صورة جديدة ➕
         </button>
 
-        <!-- مربع النتيجة (readonly) -->
         <textarea id="res" readonly class="w-full mt-6 h-40 bg-black/50 p-5 rounded-2xl border border-slate-700 outline-none focus:border-blue-500" placeholder="النتيجة تظهر هنا..."></textarea>
         
-        <!-- زر النسخ -->
-        <button id="copyBtn" onclick="copyText()" class="w-full py-2 mt-2 bg-green-600 hover:bg-green-700 rounded-xl font-bold hidden">
+        <button id="copyBtn" onclick="copyText()" class="w-full py-2 mt-2 bg-green-600 hover:bg-green-700 rounded-xl font-bold hidden text-white">
             نسخ النص 📋
         </button>
     </div>
@@ -60,17 +58,18 @@
             const res = document.getElementById('res');
             res.select();
             document.execCommand('copy');
-            alert("تم نسخ النص!");
+            alert("تم نسخ النص بنجاح!");
         }
 
         function resetApp() {
+            // إعادة كل شيء لحالته الأصلية
             document.getElementById('res').value = "";
             document.getElementById('fileName').innerText = "📁 اضغط لاختيار صورة";
             document.getElementById('img').value = "";
             document.getElementById('clearBtn').classList.add('hidden');
             document.getElementById('copyBtn').classList.add('hidden');
             document.getElementById('mainBtn').classList.remove('hidden');
-            document.getElementById('mainBtn').innerText = "بدء التحليل"; // إرجاع الزر لطبيعته
+            document.getElementById('mainBtn').innerText = "بدء التحليل";
         }
 
         async function start() {
@@ -83,10 +82,13 @@
             if(input.files.length === 0) return alert("اختر صورة أولاً!");
             
             btn.innerText = "جاري التحليل...";
+            btn.disabled = true; // منع الضغط المتكرر
+            
             const { data: { text } } = await Tesseract.recognize(input.files[0], 'ara+eng');
             
             res.value = text;
             btn.classList.add('hidden'); 
+            btn.disabled = false;
             clearBtn.classList.remove('hidden');
             copyBtn.classList.remove('hidden');
         }
